@@ -1,0 +1,130 @@
+###
+ #  summary: Create a new user
+ #  tags:
+ #    - users
+ #  requestBody:
+ #   description: User object that needs to be created
+ #   content:
+ #    application/json:
+ #     schema:
+ #      $ref: '#/components/schemas/com.ww.requests.UserRequest'
+ #  responses:
+ #    200:
+ #      description: returns the uuid as a string of the newly created user.
+ #      content:
+ #        application/json:
+ #          schema:
+ #            type: string
+###
+POST         /users                        controllers.UsersController.post
+
+
+###
+ #  summary: Get a user by email address.
+ #  tags:
+ #    - users
+ #  responses:
+ #    200:
+ #      description: returns the user whose email matches the email from the request.
+ #      content:
+ #        application/json:
+ #          schema:
+ #            $ref: '#/components/schemas/com.ww.models.User'
+ #    404:
+ #      description: user not found.
+###
+GET          /users/:email                 controllers.UsersController.get(email: String)
+
+###
+ #  summary: Replace the PII or password of an existing user
+ #  tags:
+ #    - users
+ #  requestBody:
+ #   description: User object that will replace the existing user object based on the email match.
+ #   content:
+ #    application/json:
+ #     schema:
+ #      $ref: '#/components/schemas/com.ww.requests.UserRequest'
+ #  responses:
+ #    200:
+ #      description: returns the uuid as a string of the newly created user.
+ #      content:
+ #        application/json:
+ #          schema:
+ #            type: string
+###
+PUT          /users/:email                 controllers.UsersController.put(email: String)
+
+###
+ #  summary: Update an existing user
+ #  tags:
+ #    - users
+ #  requestBody:
+ #   description: Update any property or properties of the user.
+ #   content:
+ #    application/json:
+ #     schema:
+ #      $ref: '#/components/schemas/com.ww.requests.PatchUserRequest'
+ #  responses:
+ #    200:
+ #      description: returns the uuid as a string of the newly created user.
+ #      content:
+ #        application/json:
+ #          schema:
+ #            type: string
+###
+PATCH        /users/:email                 controllers.UsersController.patch(email: String)
+
+###
+ #  summary: Create a new JWT token
+ #  tags:
+ #    - auth
+ #  requestBody:
+ #   description: Create a new JWT token
+ #   content:
+ #    application/json:
+ #     schema:
+ #      $ref: '#/components/schemas/com.ww.models.Credentials'
+ #  responses:
+ #    200:
+ #      description: returns a JWT token which can be used with the /test endoint
+ #      content:
+ #        application/json:
+ #          schema:
+ #            type: string
+###
+POST         /tokens                       controllers.AuthController.post
+
+###
+ #  summary: A secured endpoint to check if the provided JWT token is valid or not.
+ #  tags:
+ #    - auth
+ #  requestBody:
+ #   description: Test a JWT token
+ #   parameters:
+ #    - in: header
+ #      name: JWT_TOKEN
+ #      schema:
+ #       type: string
+ #      required: true
+ #      description: The JWT token which you generated via POST /tokens endpoint.
+ #  responses:
+ #    200:
+ #      description: returns the user whose email matches the email in the JWT payload.
+ #      content:
+ #        application/json:
+ #          schema:
+ #            $ref: '#/components/schemas/com.ww.models.User'
+###
+GET          /test                         controllers.UsersController.test
+
+GET          /greeting/:lang               controllers.DIController.greet(lang: String)
+
+### NoDocs ###
+GET          /docs                         controllers.Default.redirect(to = "/docs/swagger-ui/index.html?url=/assets/swagger.json")
+
+### NoDocs ###
+GET          /docs/swagger-ui/*file        controllers.Assets.at(path:String="/public/lib/swagger-ui", file:String)
+
+### NoDocs ###
+GET          /assets/*file                 controllers.Assets.versioned(path="/public", file: Asset)

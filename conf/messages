@@ -1,0 +1,9 @@
+user.already.exists=There is an existing user with the same email address.
+error.path.missing=This is a required filed.
+invalid.value=This is an invalid value.
+invalid.password=Password must be 6 to 32 characters long.
+invalid.email=Please enter a valid email address.
+invalid.name=Must be between 1 to 50 characters.
+invalid.localDate=Format should be YYYY-MM-DD.
+invalid.gender=Invalid gender. Valid values are [{0}].
+invalid.phoneType=Invalid phoneType. Valid values are [{0}].

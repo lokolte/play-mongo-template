@@ -1,0 +1,26 @@
+version: '3'
+services:
+#  web:
+#    build: .
+#    ports:
+#      - "9000:9000"
+#      - "9005:9005"
+#    volumes:
+#      - /Users/rizwan.minhas/development/play-mongo-template:/opt/app
+#    links:
+#      - mongodb
+#    environment:
+#      - SBT_OPTS=-agentlib:jdwp=transport=dt_socket,address=*:9005,suspend=n,server=y
+#    command: bash -c "source ./script.sh && sbt -jvm-debug 9005 run"
+#    #command: "sbt -jvm-debug 9005 run"
+#    stdin_open: true
+
+  mongodb:
+    image: mongo:4.2.1
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+
+volumes:
+  mongo-data: {}

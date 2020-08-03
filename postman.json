@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "62b6c440-dd9b-4075-afde-657286d8435a",
+		"name": "Play Mongo Template",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get user by email",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9000/users/user1@ww.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"users",
+						"user1@ww.com"
+					]
+				},
+				"description": "Get user by email"
+			},
+			"response": []
+		},
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pii\": {\n        \"firstName\": \"rizwan\",\n        \"lastName\": \"minhas\",\n        \"timeZone\": \"America/New_York\",\n        \"utcOffset\": 1,\n        \"dob\": \"2019-12-12\",\n        \"phoneType\": \"mobile\",\n        \"gender\": \"male\"\n    },\n    \"credentials\": {\n        \"email\": \"user1@ww.com\",\n        \"password\": \"secret\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"users"
+					]
+				},
+				"description": "Create user"
+			},
+			"response": []
+		},
+		{
+			"name": "Replace user by email",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"credentials\": {\n        \"email\": \"qwe@asd.com\",\n        \"password\": \"topsecret.\"\n    },\n    \"pii\": {\n        \"timeZone\": \"America/New_York\",\n         \"utcOffset\": 1,\n        \"firstName\": \"rizwan\",\n        \"lastName\": \"minhas\",\n        \"dob\": \"2000-01-02\",\n        \"title\": \"Mr\",\n        \"gender\": \"male\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/users/user1@ww.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"users",
+						"user1@ww.com"
+					]
+				},
+				"description": "Replace user by email"
+			},
+			"response": []
+		},
+		{
+			"name": "update user by email",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"dob\": \"2010-01-01\",\n\t\"title\": \"batman\",\n\t\"middleName\": \"middle\",\n\t\"phoneType\": \"home\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/users/user1@ww.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"users",
+						"user1@ww.com"
+					]
+				},
+				"description": "update user by email"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new JWT token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "JWT_TOKEN",
+						"value": "topsecret",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@ww.com\",\n\t\"password\": \"topsecret\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/tokens",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"tokens"
+					]
+				},
+				"description": "Create a new JWT token by providing email and password."
+			},
+			"response": []
+		},
+		{
+			"name": "Test a JWT token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "JWT_TOKEN",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1Nzg2OTQzMzcsImlhdCI6MTU3ODY5MzQzNywicGF5bG9hZCI6eyJlbWFpbCI6ICJ1c2VyMUB3dy5jb20ifX0.R4irvMotiULC-RI4_tkD1CrZYsyNHIyqk63G7JNg4qClNMFuM3GK8Ysa9PB-FtH3odsn7IndQrGlYe8mkNiwBw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9000/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"test"
+					]
+				},
+				"description": "Test a JWT token by passing it in the JWT_TOKEN header"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

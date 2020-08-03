@@ -1,0 +1,7 @@
+.*
+!/.gitignore
+!/.scalafmt.conf
+logs
+target
+temp.txt
+/RUNNING_PID
